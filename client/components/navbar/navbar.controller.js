@@ -1,15 +1,4 @@
 'use strict';
 
-angular.module('fccstockjumpApp')
-  .controller('NavbarCtrl', function ($scope, $location) {
-    $scope.menu = [{
-      'title': 'Home',
-      'link': '/'
-    }];
-
-    $scope.isCollapsed = true;
-
-    $scope.isActive = function(route) {
-      return route === $location.path();
-    };
-  });
+angular.module('fccstockjumpApp').controller('NavbarCtrl', function() {
+});
