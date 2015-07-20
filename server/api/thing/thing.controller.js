@@ -13,6 +13,24 @@ var _ = require('lodash');
 var Thing = require('./thing.model');
 var yahooFinance = require('yahoo-finance');
 
+function addMonths(date, months) {
+  var newDate = new Date(date.valueOf());
+  newDate.setMonth(date.getMonth() + months);
+  return newDate;
+}
+
+function lookupSymbol(req) {
+  var end = new Date();
+  var start = addMonths(end, -6);
+  return yahooFinance.historical({
+    symbol: req.body.name, from: start, to: end, period: 'd'
+  });
+}
+
+function handleError(res, err) {
+  return res.send(500, err);
+}
+
 // Get list of things
 exports.index = function(req, res) {
   Thing.find(function(err, things) {
@@ -30,44 +48,21 @@ exports.show = function(req, res) {
   });
 };
 
-function formattedDateString(date) {
-  return [date.getUTCFullYear(), date.getUTCMonth() + 1, date.getUTCDate()].join('-');
-}
-
-function addMonths(date, months) {
-  var newDate = new Date(date.valueOf());
-  newDate.setMonth(date.getMonth() + months);
-  return newDate;
-}
-
 // Creates a new thing in the DB.
 exports.create = function(req, res) {
   Thing.findOne({name: req.body.name}, function(err, thing) {
-    if (err) return handle(res, err);
+    if (err) return handleError(res, err);
     // Thing already exists.
-    console.log(err);
-    console.log(thing);
     if (thing) return res.status(403).send('Symbol already exists.');
     lookupSymbol(req, res).then(function(quotes) {
       if (!quotes[0]) return res.status(403).send('Invalid stock symbol.');
-      Thing.create({name: req.body.name, info:quotes}, function(err, thing) {
+      Thing.create({name: req.body.name, info: quotes}, function(err) {
         if (err) return handleError(res, err);
         res.send(200);
       });
     });
   });
 };
-
-function lookupSymbol(req) {
-  var end = new Date();
-  var start = addMonths(end, -6);
-  return yahooFinance.historical({
-    symbol: req.body.name,
-    from: start,
-    to: end,
-    period: 'd'
-  });
-}
 
 // Updates an existing thing in the DB.
 exports.update = function(req, res) {
@@ -94,7 +89,3 @@ exports.destroy = function(req, res) {
     });
   });
 };
-
-function handleError(res, err) {
-  return res.send(500, err);
-}

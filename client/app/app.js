@@ -7,7 +7,8 @@ angular.module('fccstockjumpApp', [
   'btford.socket-io',
   'ui.router',
   'ngMaterial',
-  'ngMessages'
+  'ngMessages',
+  'highcharts-ng'
 ]).config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   $urlRouterProvider.otherwise('/');
   $locationProvider.html5Mode(true);

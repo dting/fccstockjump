@@ -58,6 +58,16 @@
    */
 
   // Suppress warnings about == null comparisons.
-  "eqnull": true
+  "eqnull": true,
+
+  "globals": {
+    "angular": false,
+    "_": false,
+    "describe": false,
+    "beforeEach": false,
+    "inject": false,
+    "it": false,
+    "expect": false
+  }
 }
 // https://github.com/airbnb/javascript/blob/master/linters/jshintrc
