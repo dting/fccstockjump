@@ -66,14 +66,15 @@ angular.module('fccstockjumpApp').controller('MainCtrl',
             }, {
               type: 'all', text: 'All'
             }
-          ]
+          ],
+          inputEnabled: false
         }, navigator: {
           enabled: true
         }, exporting: {
           enabled: false
         }
       }, series: [], title: {}, useHighStocks: true
-    }
+    };
 
     $scope.$on('$destroy', function() {
       socket.unsyncUpdates('thing');

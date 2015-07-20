@@ -21,7 +21,7 @@ module.exports = function(config) {
       'client/bower_components/angular-cookies/angular-cookies.js',
       'client/bower_components/angular-sanitize/angular-sanitize.js',
       'client/bower_components/angular-route/angular-route.js',
-      'client/bower_components/lodash/dist/lodash.compat.js',
+      'client/bower_components/lodash/lodash.min.js',
       'client/bower_components/angular-socket-io/socket.js',
       'client/bower_components/angular-ui-router/release/angular-ui-router.js',
       'client/bower_components/angular-material/angular-material.js',
@@ -41,7 +41,7 @@ module.exports = function(config) {
     preprocessors: {
       '**/*.jade': 'ng-jade2js',
       '**/*.html': 'html2js',
-      '**/*.coffee': 'coffee',
+      '**/*.coffee': 'coffee'
     },
 
     ngHtml2JsPreprocessor: {
@@ -59,13 +59,13 @@ module.exports = function(config) {
     port: 8080,
 
     // level of logging
-    // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
+    // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO ||
+    // LOG_DEBUG
     logLevel: config.LOG_INFO,
 
-
-    // enable / disable watching file and executing tests whenever any file changes
+    // enable / disable watching file and executing tests whenever any file
+    // changes
     autoWatch: false,
-
 
     // Start these browsers, currently available:
     // - Chrome
@@ -76,7 +76,6 @@ module.exports = function(config) {
     // - PhantomJS
     // - IE (only Windows)
     browsers: ['PhantomJS'],
-
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
