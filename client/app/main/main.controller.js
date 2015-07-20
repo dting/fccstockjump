@@ -1,7 +1,6 @@
 'use strict';
 
-angular.module('fccstockjumpApp')
-  .controller('MainCtrl', function ($scope, $http, socket) {
+angular.module('fccstockjumpApp').controller('MainCtrl', function($scope, $http, socket) {
     $scope.awesomeThings = [];
 
     $http.get('/api/things').success(function(awesomeThings) {
@@ -10,18 +9,26 @@ angular.module('fccstockjumpApp')
     });
 
     $scope.addThing = function() {
-      if($scope.newThing === '') {
+      if (!$scope.symbol || $scope.symbol === '') return;
+      $scope.symbol = $scope.symbol.toLocaleUpperCase();
+
+      if (_.find($scope.awesomeThings, {name: $scope.symbol})) {
         return;
       }
-      $http.post('/api/things', { name: $scope.newThing });
-      $scope.newThing = '';
+
+      $http.post('/api/things', {name: $scope.symbol}).then(function() {
+        $scope.symbol = '';
+      }, function(err) {
+        // TODO: Add error message to form.
+        console.log(err);
+      });
     };
 
     $scope.deleteThing = function(thing) {
       $http.delete('/api/things/' + thing._id);
     };
 
-    $scope.$on('$destroy', function () {
+    $scope.$on('$destroy', function() {
       socket.unsyncUpdates('thing');
     });
   });
