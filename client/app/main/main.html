@@ -20,9 +20,10 @@
 
         <div ng-messages="form.symbol.$error">
           <div ng-message="md-maxlength">Invalid stock symbol.</div>
+          <div ng-message="duplicate">That stock is already being tracked.</div>
+          <div ng-message="not-found">No found stock with that symbol.</div>
         </div>
       </md-input-container>
-
       <span><md-button type="submit" class="md-raised md-primary" ng-click="addThing()">Add New</md-button></span>
     </md-content>
   </form>

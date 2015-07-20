@@ -9,18 +9,25 @@ angular.module('fccstockjumpApp').controller('MainCtrl', function($scope, $http,
   });
 
   $scope.addThing = function() {
+    $scope.form.symbol.$setValidity('duplicate', true);
+    $scope.form.symbol.$setValidity('not-found', true);
     if (!$scope.symbol || $scope.symbol === '') return;
     $scope.symbol = $scope.symbol.toLocaleUpperCase();
 
     if (_.find($scope.awesomeThings, {name: $scope.symbol})) {
+      $scope.form.symbol.$setValidity('duplicate', false);
       return;
     }
 
-    $http.post('/api/things', {name: $scope.symbol}).then(function() {
+    $http.post('/api/things', {name: $scope.symbol}).success(function() {
       $scope.symbol = '';
-    }, function(err) {
-      // TODO: Add error message to form.
+    }).error(function(err) {
       console.log(err);
+      if (err === 'Symbol already exists.') {
+        $scope.form.symbol.$setValidity('duplicate', false);
+      } else if (err === 'Invalid stock symbol.') {
+        $scope.form.symbol.$setValidity('not-found', false);
+      }
     });
   };
 

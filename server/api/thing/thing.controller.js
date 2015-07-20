@@ -47,7 +47,7 @@ exports.create = function(req, res) {
     // Thing already exists.
     console.log(err);
     console.log(thing);
-    if (thing) res.status(403).send('Symbol already exists.');
+    if (thing) return res.status(403).send('Symbol already exists.');
     lookupSymbol(req, res).then(function(quotes) {
       if (!quotes[0]) return res.status(403).send('Invalid stock symbol.');
       Thing.create({name: req.body.name, info:quotes}, function(err, thing) {
