@@ -6,7 +6,8 @@ angular.module('fccstockjumpApp', [
   'ngSanitize',
   'btford.socket-io',
   'ui.router',
-  'ngMaterial'
+  'ngMaterial',
+  'ngMessages'
 ]).config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   $urlRouterProvider.otherwise('/');
   $locationProvider.html5Mode(true);

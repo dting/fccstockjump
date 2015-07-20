@@ -9,12 +9,15 @@
       <md-icon md-icon-set="material-icons">close</md-icon>
     </button>
   </md-chips>
-  <form flex layout-margin>
+  <form name="form" flex layout-margin>
     <md-content layout="row">
 
       <md-input-container flex>
         <label>Stock symbol to track.</label>
-        <input type="text" ng-maxlength="6" ng-model="symbol">
+        <input name="symbol" type="text" md-maxlength="6" ng-model="symbol">
+        <div ng-messages="form.symbol.$error">
+          <div ng-message="md-maxlength">Invalid stock symbol.</div>
+        </div>
       </md-input-container>
 
       <span><md-button type="submit" class="md-raised md-primary" ng-click="addThing()">Add New</md-button></span>
