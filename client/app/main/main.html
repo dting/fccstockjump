@@ -1,20 +1,23 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <md-content class="content-wrapper" flex layout-padding>
-  <md-chips ng-model="awesomeThings" class="custom-chips" readonly="true" md-on-append="ctrl.newVeg($chip)" layout-margin>
-    <md-chip-template>
-      <strong>{{$chip.name}}</strong>
-    </md-chip-template>
-    <button md-chip-remove class="md-primary vegetablechip">
-      <md-icon md-icon-set="material-icons">close</md-icon>
-    </button>
-  </md-chips>
+  <md-content layout layout-margin layout-wrap>
+    <div class="custom-chip" ng-repeat="stock in awesomeThings" layout="row" layout-align="center center">
+      <div class="custom-chip-contents">
+        <strong>{{stock.name}}</strong>
+      </div>
+
+      <button class="chip-remove-container" ng-click="deleteThing(stock)">
+        <md-icon md-icon-set="material-icons" class="chip-remove-icon">close</md-icon>
+      </button>
+    </div>
+  </md-content>
   <form name="form" flex layout-margin>
     <md-content layout="row">
-
       <md-input-container flex>
         <label>Stock symbol to track.</label>
         <input name="symbol" type="text" md-maxlength="6" ng-model="symbol">
+
         <div ng-messages="form.symbol.$error">
           <div ng-message="md-maxlength">Invalid stock symbol.</div>
         </div>

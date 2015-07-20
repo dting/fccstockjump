@@ -1,37 +1,60 @@
-.thing-form {
-  margin: 20px 0;
-}
-
-#banner {
-    border-bottom: none;
-    margin-top: -20px;
-}
-
-#banner h1 {
-    font-size: 60px;
-    line-height: 1;
-    letter-spacing: -1px;
-}
-
-.hero-unit {
-    position: relative;
-    padding: 30px 15px;
-    color: #F5F5F5;
-    text-align: center;
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-    background: #4393B9;
-}
-
 .footer {
-    text-align: center;
-    width: 90%;
-    max-width: 1100px;
-    min-width: 400px;
-    margin: 0 auto;
+  text-align: center;
+  width: 90%;
+  max-width: 1100px;
+  min-width: 400px;
+  margin: 0 auto;
 }
+
 .content-wrapper {
-    width: 90%;
-    max-width: 1100px;
-    min-width: 400px;
-    margin: 0 auto;
+  width: 90%;
+  max-width: 1100px;
+  min-width: 400px;
+  margin: 0 auto;
+}
+
+div.custom-chip {
+  cursor: default;
+  border-radius: 16px;
+  display: block;
+  height: 32px;
+  line-height: 32px;
+  margin: 8px 8px 0 0;
+  padding: 0 4px 0 12px;
+  background: rgb(224,224,224);
+  color: rgb(66,66,66);
+}
+div.custom-chip-contents {
+  display: block;
+  padding-right: 8px;
+  float: left;
+  white-space: nowrap;
+}
+
+button.chip-remove-container {
+  position: relative;
+  height: 24px;
+  width: 24px;
+  line-height: 30px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  margin-top: 4px;
+  transition: background 0.15s linear;
+  display: block; }
+button.chip-remove-container .chip-remove-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0) scale(0.7);
+  color: white;
+  fill: white; }
+button.chip-remove-container:hover, button.chip-remove-container:focus {
+  background: rgba(255, 0, 0, 0.8); }
+
+* {
+  outline: 0;
 }
