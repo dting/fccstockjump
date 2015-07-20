@@ -32,9 +32,48 @@ angular.module('fccstockjumpApp').controller('MainCtrl',
       });
     };
 
+    $scope.$watchCollection('awesomeThings', function(newVals, oldVals) {
+      if (newVals.length > oldVals.length) {
+        var newStocks = _.difference(newVals, oldVals);
+        _.each(newStocks, function(newStock) {
+          var s = {name: newStock.name, data: []};
+          _.each(newStock.info, function(point) {
+            s.data.push([new Date(point.date).valueOf(), point.close]);
+          });
+
+          $scope.chartConfig.series.push(s);
+        });
+      } else if (newVals.length < oldVals.length) {
+        var removedStocks = _.difference(oldVals, newVals);
+        _.each(removedStocks, function(removedStock) {
+          _.remove($scope.chartConfig.series, {name: removedStock.name});
+        });
+      }
+    });
+
     $scope.deleteThing = function(thing) {
       $http.delete('/api/things/' + thing._id);
     };
+
+    $scope.chartConfig = {
+      options: {
+        chart: {}, rangeSelector: {
+          buttons: [
+            {
+              type: 'week', count: 1, text: '1w'
+            }, {
+              type: 'month', count: 1, text: '1m'
+            }, {
+              type: 'all', text: 'All'
+            }
+          ]
+        }, navigator: {
+          enabled: true
+        }, exporting: {
+          enabled: false
+        }
+      }, series: [], title: {}, useHighStocks: true
+    }
 
     $scope.$on('$destroy', function() {
       socket.unsyncUpdates('thing');

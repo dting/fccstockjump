@@ -1,6 +1,10 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <md-content class="content-wrapper" flex layout-padding>
+  <md-content>
+    <highchart id="chart1" config="chartConfig" flex></highchart>
+  </md-content>
+
   <md-content layout layout-margin layout-wrap>
     <div class="custom-chip" ng-repeat="stock in awesomeThings" layout="row" layout-align="center center">
       <div class="custom-chip-contents">
@@ -12,6 +16,7 @@
       </button>
     </div>
   </md-content>
+
   <form name="form" flex layout-margin>
     <md-content layout="row">
       <md-input-container flex>
@@ -28,7 +33,6 @@
     </md-content>
   </form>
 </md-content>
-
 
 <footer class="footer">
   <p>Free Code Camp StockJump | <a href="https://twitter.com/d_ting" target="_blank">@d_ting</a>
