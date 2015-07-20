@@ -1,18 +1,20 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <md-content class="content-wrapper" flex layout-padding layout="column">
-  <md-content flex layout="column">
+  <md-content layout flex class="chart-wrapper">
     <highchart id="chart1" config="chartConfig" flex></highchart>
   </md-content>
 
   <md-content layout layout-margin layout-wrap layout-padding>
-    <div class="custom-chip" ng-repeat="stock in awesomeThings" layout="row" layout-align="center center">
+    <div class="custom-chip" ng-repeat="stock in awesomeThings" layout="row"
+         layout-align="center center">
       <div class="custom-chip-contents">
         <strong>{{stock.name}}</strong>
       </div>
 
       <button class="chip-remove-container" ng-click="deleteThing(stock)">
-        <md-icon md-icon-set="material-icons" class="chip-remove-icon">close</md-icon>
+        <md-icon md-icon-set="material-icons" class="chip-remove-icon">close
+        </md-icon>
       </button>
     </div>
   </md-content>
@@ -29,11 +31,14 @@
           <div ng-message="not-found">No found stock with that symbol.</div>
         </div>
       </md-input-container>
-      <span><md-button type="submit" class="md-raised md-primary" ng-click="addThing()">Add New</md-button></span>
+      <span><md-button type="submit" class="md-raised md-primary"
+                       ng-click="addThing()">Add New
+      </md-button></span>
     </md-content>
   </form>
 </md-content>
 
 <footer class="footer">
-  <p>Free Code Camp StockJump | <a href="https://twitter.com/d_ting" target="_blank">@D_Ting</a>
+  <p>Free Code Camp StockJump | <a href="https://twitter.com/d_ting"
+                                   target="_blank">@D_Ting</a>
 </footer>
