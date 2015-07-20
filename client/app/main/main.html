@@ -1,7 +1,7 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<md-content class="content-wrapper" flex layout-padding>
-  <md-content>
+<md-content class="content-wrapper" flex layout-padding layout="column">
+  <md-content flex layout="column">
     <highchart id="chart1" config="chartConfig" flex></highchart>
   </md-content>
 
@@ -17,7 +17,7 @@
     </div>
   </md-content>
 
-  <form name="form" flex layout-margin>
+  <form name="form" layout-margin>
     <md-content layout="row">
       <md-input-container flex>
         <label>Stock symbol to track.</label>

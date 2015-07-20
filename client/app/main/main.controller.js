@@ -66,8 +66,7 @@ angular.module('fccstockjumpApp').controller('MainCtrl',
             }, {
               type: 'all', text: 'All'
             }
-          ],
-          inputEnabled: false
+          ], inputEnabled: false
         }, navigator: {
           enabled: true
         }, exporting: {
